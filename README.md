@@ -52,3 +52,15 @@ Add JWT functionality as shown in the course. Make sure that JWTs are required f
 Before submitting, make sure that your project is complete with a `README.md`. Your `README.md` must include instructions for setting up and running your project including how you setup, run, and connect to your database. 
 
 Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
+
+
+###
+1. You need to install dependencies of project by using `npm i` 
+2. Please do the migration by using `db-migration up` , it will help you create 3 tables that used in project
+3. To see the testing , please run `npm run test` and review the out put of testing
+4. To run the application, please try with `npm run watch` and use postman to test endpoints.
+5. PORT that backend running is on localhost:3000 and db is localhost:5432
+6. I do not have handler folder , all the handlers for routes are in the model.ts files
+###
+I have add one middleware for checking token in the folder middleware
+

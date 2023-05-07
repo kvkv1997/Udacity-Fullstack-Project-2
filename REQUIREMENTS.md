@@ -5,27 +5,91 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index 
-- Show
-- Create [token required]
-- [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
+- Index : `path : /products` , method : [GET], **list out all of the products are available in project**
+- Show: `path: /product/:id` , method : [GET], **list out product by using product id**
+- Create [token required] {
+    `path: /products`
+    method : [POST]
+    require Token : true
+**create new product**
+}
+- [OPTIONAL] Products by category (args: product category){
+    `path : /products/category/:category`
+    method: [GET]
+    require token : false
+    **Get list of products by input the category name**
+}
 
 #### Users
-- Index [token required]
-- Show [token required]
-- Create N[token required]
+- Index [token required] {
+    `path : /users`
+    method : [GET]
+    require token : true
+**Get list of users in project**
+}
+- SignUp {
+    `path : /signUp`
+    method: [POST]
+    require Token : false
+    **allow user to sign up and got the token , then user can use that token for project**
+}
+- Show [token required] {
+    `path: /users/:id`
+    method : [GET]
+    require token : true
+    **Get user info with user id**
+}
+- Create N[token required]{
+    `path : /users`
+    method: [POST]
+    require Token : true
+    **create new user in the project with token required**
+}
+- Login {
+    path :/authenticate
+    method: [POST]
+    require token : false
+    **Allow user to login and then get the token**
+}
 
 #### Orders
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+- Current Order by user (args: user id)[token required] {
+    path : /orders/user/userId
+    method : [GET]
+    require token : true
+    **allow user to get orders by user id**
+}
+- [OPTIONAL] Completed Orders by user (args: user id)[token required] {
+    path: /orders/user/:userId/order
+    method :[GET]
+    token require : true
+    **Get completed orders by user using user id**
+}
+- update Order status {
+    path : /orders/:id
+    method: [PUT],
+    token require: false
+    **update status of order from active to complete**
+}
+- create Order {
+    path : /orders
+    method:[POST]
+    token require : false
+    **allow user to create order**
+}
+- Get list of Orders {
+    path : /orders
+    method : [GET]
+    token require : false 
+    **Get list of all orders**
+}
 
 ## Data Shapes
 #### Product
--  id
-- name
-- price
-- [OPTIONAL] category
+-  id SERIAL PRIMARY KEY,
+- name VARCHAR(40)
+- price integer
+- [OPTIONAL] category 
 
 #### User
 - id
