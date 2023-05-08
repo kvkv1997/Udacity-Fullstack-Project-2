@@ -30,8 +30,16 @@ export class OrderStore {
             status: order.status,
         }
         const connection = await client.connect();
-        const sql = 'INSERT INTO orders (product_id, quantity, user_id, status) VALUES ($1,$2,$3,$4) RETURNING *;'
-        const result = await client.query(sql, [newOrder.product_id, newOrder.quantity, newOrder.user_id, newOrder.status]);
+        const sql_insert_order = `
+        WITH new_row AS (
+            INSERT INTO orders (product_id,quantity, user_id,status)
+            VALUES ($1,$2,$3,$4) RETURNING *
+          )
+        INSERT INTO order_product (order_id, product_id) VALUES ((SELECT id FROM new_row), $1) RETURNING *;
+        `;
+        const result = await client.query(sql_insert_order, [newOrder.product_id, newOrder.quantity, newOrder.user_id, newOrder.status]);
+        console.log(result);
+
         if (result && result.rows.length > 0) {
             const createdOrder = result.rows[0];
             connection.release();
