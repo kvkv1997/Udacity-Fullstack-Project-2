@@ -1,6 +1,6 @@
 /* Replace with your SQL commands */
 
-CREATE TABLE products (
+CREATE TABLE IF NOT EXISTS products (
     id SERIAL PRIMARY KEY,
     name VARCHAR(40),
     price integer,
