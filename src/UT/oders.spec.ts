@@ -1,45 +1,40 @@
 import { Order, OrderStore } from '../models/orders'
 import dotenv from 'dotenv'
-import axios from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 import app from '../server'
 import supertest from "supertest";
 let http = supertest.agent(app)
 const backendServer = 'http://localhost:3000/api'
 dotenv.config()
 const store = new OrderStore();
+const url = `${backendServer}/users/signUp`
+let orderLogin;
+let loginToken;
+let config: object
 
 describe("Testing Order model", () => {
-    it('should have an index method', () => {
+    it('should have an index method', async () => {
         expect(store.index).toBeDefined();
     });
 });
+const OrderUser = {
+    first_name: "Tu",
+    last_name: "Nguyen Hoang",
+    userName: "order.test",
+    password: "order123"
+}
 describe('Testing Order Endpoints', () => {
-    const loginURL = `${backendServer}/users/authenticate`
-    const payloadLogin = {
-        userName: 'tu.nguyenhoang',
-        password: 'admin123'
-    }
     it('should have list of orders', async () => {
         const result = await axios.get(`${backendServer}/orders`)
         expect(result.status).toBe(200)
     });
     it('should have list order by user and require token ', async () => {
-        const login = await axios.post(loginURL, payloadLogin)
-        const loginToken = login.data.token
-        let config = {
-            headers: { Authorization: `Bearer ${loginToken}` }
-        }
         const userId = 1
         const url = `${backendServer}/orders/user/${userId}`
         const result = await axios.get(url, config)
         expect(result.status).toBe(200)
     });
     it('should get list of completed order of user and require token ', async () => {
-        const login = await axios.post(loginURL, payloadLogin)
-        const loginToken = login.data.token
-        let config = {
-            headers: { Authorization: `Bearer ${loginToken}` }
-        }
         const userId = 1
         const url = `${backendServer}/orders/user/${userId}/order`
         const result = await axios.get(url, config)
@@ -55,11 +50,6 @@ describe('Testing Order Endpoints', () => {
             product_id: 3,
             user_id: 1,
             quantity: 10,
-        }
-        const login = await axios.post(loginURL, payloadLogin)
-        const loginToken = login.data.token
-        let config = {
-            headers: { Authorization: `Bearer ${loginToken}` }
         }
         const result = await axios.post(`${backendServer}/orders`, newOrder, config)
         expect(result.data.data.status).toEqual('active')

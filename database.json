@@ -5,5 +5,12 @@
       "database": "udacity",
       "user": "udacityuser",
       "password": "admin123"
+    },
+    "test": {
+      "driver": "pg",
+      "host": "127.0.0.1",
+      "database": "fantasy_worlds",
+      "user": "udacityuser",
+      "password": "admin123"
     }
 }

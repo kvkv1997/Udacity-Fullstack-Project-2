@@ -1,4 +1,6 @@
+import { Pool } from 'pg';
 import client from '../connection'
+
 
 export type Order = {
     id?: Number,

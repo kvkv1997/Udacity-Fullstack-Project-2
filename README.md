@@ -63,4 +63,15 @@ Before submitting your project, spin it up and test each endpoint. If each one r
 6. I do not have handler folder , all the handlers for routes are in the model.ts files
 ###
 I have add one middleware for checking token in the folder middleware
+### Environment variable are : 
+POSTGRES_HOST=127.0.0.1
+POSTGRES_DB=udacity
+POSTGRES_USER=udacityuser
+POSTGRES_PASSWORD=admin123
+POSTGRES_DB_TEST=fantasy_worlds
 
+BCRYPT_PASSWORD = udacity-bcrypt
+SALT_ROUND= 5
+
+SECRET_TOKEN = helloUdacity!
+ENV = dev

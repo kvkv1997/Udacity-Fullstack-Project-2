@@ -7,5 +7,3 @@ CREATE TABLE IF NOT EXISTS users (
     user_name VARCHAR(50) UNIQUE,
     password VARCHAR
 );
-
-
