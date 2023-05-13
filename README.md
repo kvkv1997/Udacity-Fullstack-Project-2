@@ -64,7 +64,7 @@ Before submitting your project, spin it up and test each endpoint. If each one r
 7. folder middle has the authenticate method to check the token.
 ###
 I have add one middleware for checking token in the folder middleware
-### Environment variable are : 
+# Environment variable are : 
 POSTGRES_HOST=127.0.0.1
 POSTGRES_DB=udacity
 POSTGRES_USER=udacityuser
