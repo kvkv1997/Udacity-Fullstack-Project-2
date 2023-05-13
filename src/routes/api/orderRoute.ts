@@ -58,7 +58,7 @@ orderRoute.post("/", auth, async (req: Request, res: Response) => {
             const createdOrder = await orderStore.createOrder(newOrder);
             if (createdOrder) {
                 res.status(200).json({
-                    message: "Create new product successfully",
+                    message: "Create new order successfully",
                     data: createdOrder
                 })
             } else {

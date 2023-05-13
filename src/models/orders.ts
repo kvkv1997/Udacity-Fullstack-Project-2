@@ -37,11 +37,9 @@ export class OrderStore {
             INSERT INTO orders (product_id,quantity, user_id,status)
             VALUES ($1,$2,$3,$4) RETURNING *
           )
-        INSERT INTO order_product (order_id, product_id) VALUES ((SELECT id FROM new_row), $1) RETURNING *;
+        INSERT INTO order_product (order_id, product_id) VALUES ((SELECT id FROM new_row), (SELECT product_id FROM new_row)) RETURNING *;
         `;
         const result = await client.query(sql_insert_order, [newOrder.product_id, newOrder.quantity, newOrder.user_id, newOrder.status]);
-        console.log(result);
-
         if (result && result.rows.length > 0) {
             const createdOrder = result.rows[0];
             connection.release();

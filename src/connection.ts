@@ -10,9 +10,6 @@ const {
     POSTGRES_DB_TEST
 } = process.env
 let client: Pool;
-
-console.log(ENV, "ENV");
-
 if (ENV === 'test') {
     client = new Pool({
         host: POSTGRES_HOST,

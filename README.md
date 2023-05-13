@@ -56,11 +56,12 @@ Before submitting your project, spin it up and test each endpoint. If each one r
 
 ###
 1. You need to install dependencies of project by using `npm i` 
-2. Please do the migration by using `db-migration up` , it will help you create 3 tables that used in project
-3. To see the testing , please run `npm run test` and review the out put of testing
-4. To run the application, please try with `npm run watch` and use postman to test endpoints.
+2. Please do the migration by using `db-migration up` , it will help you create 3 tables that used in project.
+3. To see the testing , please run `npm run test` and review the out put of testing.
+4. To run the application, please try with `npm run watch` will start the dev and use postman to test endpoints.
 5. PORT that backend running is on localhost:3000 and db is localhost:5432
-6. I do not have handler folder , all the handlers for routes are in the model.ts files
+6. I do not have handler folder , all the handlers for routes are in the models folders.
+7. folder middle has the authenticate method to check the token.
 ###
 I have add one middleware for checking token in the folder middleware
 ### Environment variable are : 
