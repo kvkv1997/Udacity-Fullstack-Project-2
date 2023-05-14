@@ -36,8 +36,13 @@ export class UserStore {
         const sql = `SELECT * FROM users WHERE id = ${user_id}`
         const result = await connection.query(sql);
         if (result.rows && result.rows.length > 0) {
+            const token = jwt.sign({ userName: result.rows[0].user_name, id: result.rows[0].id }, secret)
+            const data = {
+                data: result.rows[0],
+                token: token
+            }
             connection.release();
-            return result.rows[0];
+            return data;
         } else {
             connection.release();
             throw new Error(`Data Not Found`)
@@ -62,9 +67,13 @@ export class UserStore {
             const result = await connection.query(sql_insert, [user.fistName, user.lastName, user.userName, hash])
             const createdUser = result.rows[0]
             const token = jwt.sign({ userName: createdUser.user_name, id: createdUser.id }, secret)
+            const data = {
+                data: result.rows[0],
+                token: token
+            }
             connection.release()
             //@ts-ignore
-            return token
+            return data
         }
     }
     async authenticate(userName: string, password: string): Promise<User> {

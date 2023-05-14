@@ -54,7 +54,7 @@ userRoute.post("/signUp", async (req: Request, res: Response) => {
             const signUpUser = await userStore.createUser(newUser);
             res.status(200).json({
                 message: "Sign up successfully",
-                data: signUpUser
+                token: signUpUser
             })
         } else {
             res.status(400).send({ message: "Please input username, password, firstname, lastname" })
