@@ -8,7 +8,8 @@
 6. I do not have handler folder , all the handlers for routes are in the models folders.
 7. folder middle has the authenticate method to check the token.
 ###
-I have add one middleware for checking token in the folder middleware
+I have add one middleware for checking token in the folder middleware.
+I'm using the 2 database and when you run the command db-migrate up , those databases will be created.
 # Environment variable are : 
 POSTGRES_HOST=127.0.0.1
 POSTGRES_DB=udacity
