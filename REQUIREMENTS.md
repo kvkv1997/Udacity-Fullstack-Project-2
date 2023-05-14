@@ -92,15 +92,15 @@ These are the notes from a meeting with the frontend developer that describe wha
 - [OPTIONAL] category 
 
 #### User
-- id
-- firstName
-- lastName
-- password
+- id SERIAL PRIMARY KEY,
+- firstName VARCHAR(50),
+- lastName VARCHAR(50),
+- password TEXT
 
 #### Orders
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
-- status of order (active or complete)
+- id SERIAL PRIMARY KEY,
+- product_id bigint,
+- quantity integer,
+- user_id bigint,
+- status VARCHAR(10)
 

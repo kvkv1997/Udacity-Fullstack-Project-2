@@ -71,7 +71,7 @@ orderRoute.post("/", auth, async (req: Request, res: Response) => {
         res.status(500).send({ message: `${error}` })
     }
 })
-orderRoute.put("/:id", async (req: Request, res: Response) => {
+orderRoute.put("/:id", auth, async (req: Request, res: Response) => {
     try {
         const orderId = parseInt(req.params.id);
         if (orderId && (typeof orderId == 'number')) {
